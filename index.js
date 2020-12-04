@@ -1,7 +1,7 @@
 'use strict';
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, prettyPrint } = format;
-const redact = require('redact-secrets')('[REDACTED]');
+const redact = require('./redact')('[REDACTED]');
 require('winston-daily-rotate-file');
 
 let logger;
@@ -24,13 +24,13 @@ function initialize(logLevel = 'info') {
             timestamp(),
             format(info => redact.map(info))(),
             format.json(),
-            prettyPrint()
-        ),
+            prettyPrint()),
         transports: [
             new transports.Console(),
             errorTransport
         ]
     });
+
     return logger;
 }
 
