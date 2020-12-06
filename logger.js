@@ -1,12 +1,36 @@
 'use strict';
 
 const moduleLogger = require('./');
+
+//Initialize the wrapper with log level set at debug - default is info
 var logger = moduleLogger.init('debug');
 
-// logger.info("star schema");
-// logger.error("oppsie");
-// logger.info("metadata", { apiKey: '1232' });
-//logger.info("Logging in with password", { password: 'qwerty'})
+logger.info("star schema");
+//Output
+// {
+//   message: 'star schema',
+//   level: 'info',
+//   timestamp: '2020-12-06T14:47:26.273Z'
+// }
+
+logger.error("oppsie");
+//Output
+// {
+//   message: 'oppsie',
+//   level: 'error',
+//   timestamp: '2020-12-06T14:47:26.284Z'
+// }
+//error log file at \errorLogs\application-2020-12-06-14.log
+
+logger.info("metadata", { apiKey: '1232' });
+//Output
+// {
+//   apiKey: '[REDACTED]',
+//   level: 'info',
+//   message: 'metadata',
+//   timestamp: '2020-12-06T14:47:26.286Z'
+// }
+
 var obj = {
   username: 'watson',
   password: 'hhGu38gf',
@@ -16,7 +40,23 @@ var obj = {
     card: '1234 1234 1234 1234'
   }
 }
+logger.error("Sensitive information", { sensitiveInfo: obj });
+//Output
+// {
+//   sensitiveInfo: {
+//     username: 'watson',
+//     password: '[REDACTED]',
+//     extra: { id: 1, token: '[REDACTED]', card: '[REDACTED]' }
+//   },
+//   level: 'error',
+//   message: 'Sensitive information',
+//   timestamp: '2020-12-06T14:47:26.288Z'
+// }
+//error log file at \errorLogs\application-2020-12-06-14.log
 
-//logger.error("Password", {sensitiveInfo: obj});
-logger.info("secret is 12345");
 logger.info("password is 12345");
+// {
+//   message: 'password[REDACTED]',
+//   level: 'info',
+//   timestamp: '2020-12-06T14:47:26.291Z'
+// }

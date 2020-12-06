@@ -1,4 +1,6 @@
 'use strict'
+//Modified from https://github.com/watson/is-secret/blob/master/index.js
+//Includes regex lookarounds for message level redaction
 
 var KEYS = [
   // generic

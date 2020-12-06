@@ -15,11 +15,11 @@ const errorTransport = new transports.DailyRotateFile({
     maxSize: '20m',
     maxFiles: '14d',
     level: 'error'
-  });
-
+});
+  
 function initialize(logLevel = 'info') {
     logger = createLogger({
-        level: logLevel,
+        level: logLevel, 
         format: combine(
             timestamp(),
             format(info => redact.map(info))(),

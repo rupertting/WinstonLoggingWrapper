@@ -1,4 +1,7 @@
 'use strict'
+//Modified from https://github.com/watson/redact-secrets
+//Includes message level redaction in addition to objects
+//Includes fixed for Symbols which are not included in the traverse mapping
 
 var traverse = require('traverse')
 var isSecret = require('./secrets')
