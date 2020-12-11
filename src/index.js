@@ -17,7 +17,18 @@ const errorTransport = new transports.DailyRotateFile({
     level: 'error'
 });
   
-function initialize(logLevel = 'info') {
+function initialize(logLevel = 'info', applicationId, instanceId, environmentType, hostIp, correlationId) {
+
+      let meta = {
+        'application-id': applicationId,
+        'instance-id': instanceId,
+        'environment-type': environmentType,
+        'host-ip': hostIp,
+    }
+    let scope = {
+        'correlation-id': correlationId
+    }
+    
     logger = createLogger({
         level: logLevel, 
         format: combine(
@@ -25,6 +36,7 @@ function initialize(logLevel = 'info') {
             format(info => redact.map(info))(),
             format.json(),
             prettyPrint()),
+        defaultMeta: {'meta': meta, 'scope': scope},
         transports: [
             new transports.Console(),
             errorTransport

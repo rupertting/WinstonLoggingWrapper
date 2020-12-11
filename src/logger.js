@@ -3,7 +3,14 @@
 const moduleLogger = require('./');
 
 //Initialize the wrapper with log level set at debug - default is info
-var logger = moduleLogger.init('debug');
+var applicationId = "123-aaa-uash-$";
+var instanceId = "88-77-99-aa-33";
+
+var environmentType = "DEV";
+var hostIp = "89089-kaskdas-opoo";
+
+var correlationId = "h5846654jsdjf"
+var logger = moduleLogger.init('debug', applicationId, instanceId, environmentType, hostIp, correlationId);
 
 logger.info("star schema");
 //Output
