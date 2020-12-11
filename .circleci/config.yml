@@ -9,7 +9,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:10-browsers
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -25,4 +25,8 @@ jobs:
           command: |
             ls -al
             echo '^^^That should look familiar^^^'
-
+      - run:
+          name: Run logger
+          command: |
+            node -v
+            node src\logger.js
