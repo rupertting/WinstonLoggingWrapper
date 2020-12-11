@@ -29,4 +29,4 @@ jobs:
           name: Run logger
           command: |
             node -v
-            node src\logger.js
+            node src/logger.js
