@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "traverse": "^0.6.6",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {},
   "scripts": {
