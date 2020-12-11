@@ -37,5 +37,8 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - run:
+          name: Run logger
+          command: node src/logger.js
     
           
