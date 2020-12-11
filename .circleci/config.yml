@@ -4,7 +4,7 @@ workflows:
   build:
     jobs:
       - build:
-          context: winston-logging-wrapper
+          context: winston-logger-wrapper
  
 jobs:
   build:
