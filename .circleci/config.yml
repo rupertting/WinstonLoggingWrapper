@@ -65,7 +65,7 @@ jobs:
           command: |
             echo "$NPM_TOKEN"
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-       - run:
+      - run:
           name: Publish package
           command: npm publish
       
