@@ -38,7 +38,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Run logger
-          command: node src/logger.js
+          name: Run tests
+          command: npm test
     
           
