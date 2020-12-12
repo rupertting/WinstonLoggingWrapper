@@ -3,7 +3,7 @@ version: 2.1
 workflows:
   build-test-and-publish:
     jobs:
-      - build:
+      - build
       - test:
           requires:
             - build
@@ -38,7 +38,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:10-browsers
-     steps:
+    steps:
       - run:
           name: Run tests
           command: npm test
