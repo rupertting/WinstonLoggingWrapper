@@ -62,7 +62,7 @@ jobs:
           at: ~/repo
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
+          command: echo "$NPM_TOKEN"
       
       
     
