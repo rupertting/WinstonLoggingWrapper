@@ -10,9 +10,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:10-browsers
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run:
