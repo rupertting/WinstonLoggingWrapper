@@ -1,5 +1,5 @@
 {
-  "name": "loggingwrapper",
+  "name": "veryawesomeloggingwrapper",
   "version": "1.0.0",
   "description": "A logging wrapper for Winston logger",
   "main": "src/index.js",
