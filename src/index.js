@@ -35,7 +35,10 @@ function initialize(logLevel = 'info', applicationId, instanceId, environmentTyp
             timestamp(),
             format(info => redact.map(info))(),
             format.json(),
-            prettyPrint()),
+            prettyPrint(),
+            format.colorize({all: true})
+        ),
+        
         defaultMeta: {'meta': meta, 'scope': scope},
         transports: [
             new transports.Console(),
