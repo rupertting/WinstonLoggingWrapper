@@ -1,5 +1,10 @@
 version: 2.1
 
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10-browsers
+
 workflows:
   build-test-and-publish:
     jobs:
@@ -9,8 +14,7 @@ workflows:
             - build
 jobs:
   build:
-    docker:
-      - image: circleci/node:10-browsers
+     <<: *defaults
     steps:
       - checkout
       - run:
@@ -35,10 +39,14 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+      - persist_to_workspace:
+          root: ~/repo
+          paths: /
   test:
-    docker:
-      - image: circleci/node:10-browsers
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Run tests
           command: npm test
