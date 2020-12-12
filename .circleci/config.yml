@@ -1,11 +1,12 @@
 version: 2.1
 
 workflows:
-  build:
+  build-test-and-publish:
     jobs:
       - build:
-          context: winston-logger-wrapper
- 
+      - test:
+          requires:
+            - build
 jobs:
   build:
     docker:
@@ -34,8 +35,13 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+  test:
+    docker:
+      - image: circleci/node:10-browsers
+     steps:
       - run:
           name: Run tests
           command: npm test
+      
     
           
