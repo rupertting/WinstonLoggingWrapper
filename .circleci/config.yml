@@ -46,8 +46,8 @@ jobs:
       - run:
           name: Run build
           command: |
+            cd publish
             yarn build
-            cp -r dist publish/dist
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
