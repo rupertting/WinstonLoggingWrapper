@@ -38,6 +38,9 @@ jobs:
       - run:
           name: Update yarn
           command: "curl -o- -L https://yarnpkg.com/install.sh | bash"
+      - run:
+          name: Install cwd
+          command: "yarn add cwd"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
