@@ -1,6 +1,6 @@
 {
   "name": "veryawesomeloggingwrapper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A logging wrapper for Winston logger",
   "main": "src/index.js",
   "dependencies": {
@@ -11,7 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "cp package.json dist/package.json && cp -r src dist/src/"
   },
   "repository": {
     "type": "git",

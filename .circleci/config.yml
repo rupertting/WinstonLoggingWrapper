@@ -14,7 +14,7 @@ workflows:
             - build
       - publish:
           context:
-           - winston-logger-wrapper-variables
+            - winston-logger-wrapper-variables
           requires:
             - test
 jobs:
@@ -34,19 +34,33 @@ jobs:
             echo '^^^That should look familiar^^^'
       - run:
           name: Update npm
-          command: 'sudo npm install -g npm@latest'
+          command: "sudo npm install -g npm@latest"
+      - run:
+          name: Update yarn
+          command: "curl -o- -L https://yarnpkg.com/install.sh | bash"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install npm
-          command: npm install
+          name: Install packages
+          command: yarn --cwd publish install
+      - run:
+          name: Run build
+          command: yarn --cwd publish build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - publish/node_modules
       - persist_to_workspace:
           root: ~/repo
           paths: .
+      - run:
+          name: List code in repo
+          command: |
+            ls -al
+      - run:
+          name: List code in publish
+          command: |
+            ls publish
   test:
     <<: *defaults
     steps:
@@ -54,7 +68,7 @@ jobs:
           at: ~/repo
       - run:
           name: Run tests
-          command: npm test
+          command: yarn --cwd publish test
   publish:
     <<: *defaults
     steps:
@@ -64,11 +78,9 @@ jobs:
           name: Authenticate with registry
           command: |
             echo "$NPM_TOKEN"
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/publish/.npmrc
       - run:
           name: Publish package
-          command: npm publish
-      
-      
-    
-          
+          command: |
+            cd publish
+            npm publish
