@@ -49,7 +49,7 @@ jobs:
           command: |
             mkdir -p publish/dist/src
             yarn --cwd publish install
-       - run:
+      - run:
           name: List publish
           command: |
             ls publish
