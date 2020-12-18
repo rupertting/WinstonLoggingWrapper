@@ -46,6 +46,7 @@ jobs:
       - run:
           name: Run build
           command: |
+            ls -al
             cd publish
             yarn build
       - save_cache:
