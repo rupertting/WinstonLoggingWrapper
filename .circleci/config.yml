@@ -46,13 +46,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install packages
-          command: yarn --cwd ~/publish/ install
+          command: |
+            mkdir -p publish/dist
+            yarn --cwd publish install
       - run:
           name: Run build
           command: |
             ls -al
-            cd publish
             yarn build
+            cp -r dist publish/dist
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -67,7 +69,8 @@ jobs:
       - run:
           name: List code in publish
           command: |
-            ls ~/publish
+            ls publish
+            ls publish/dist
   test:
     <<: *defaults
     steps:
@@ -75,7 +78,7 @@ jobs:
           at: ~/repo
       - run:
           name: Run tests
-          command: yarn --cwd ~/publish test
+          command: yarn --cwd publish test
   publish:
     <<: *defaults
     steps:
