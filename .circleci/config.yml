@@ -45,7 +45,9 @@ jobs:
           command: yarn --cwd publish install
       - run:
           name: Run build
-          command: yarn --cwd publish build
+          command: |
+            yarn build
+            cp -r src publish/src
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
