@@ -12,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "jest",
-    "build": "cp package.json dist/package.json && cp -r src dist/src/"
+    "build": "cp package.json dist && cp -r src dist/src/"
   },
   "repository": {
     "type": "git",
