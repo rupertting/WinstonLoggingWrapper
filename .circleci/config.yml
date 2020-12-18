@@ -53,8 +53,11 @@ jobs:
           name: Run build
           command: |
             ls -al
-            yarn build
-            cp -r dist publish/dist
+            yarn --cwd publish build
+            ls -al
+            ls publish
+            ls publish/dist
+            ls publish/dist/src
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -71,26 +74,26 @@ jobs:
           command: |
             ls publish
             ls publish/dist
-  test:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Run tests
-          command: yarn --cwd publish test
-  publish:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Authenticate with registry
-          command: |
-            echo "$NPM_TOKEN"
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/publish/.npmrc
-      - run:
-          name: Publish package
-          command: |
-            cd publish/
-            npm publish
+  # test:
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/repo
+  #     - run:
+  #         name: Run tests
+  #         command: yarn --cwd publish test
+  # publish:
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/repo
+  #     - run:
+  #         name: Authenticate with registry
+  #         command: |
+  #           echo "$NPM_TOKEN"
+  #           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/publish/.npmrc
+  #     - run:
+  #         name: Publish package
+  #         command: |
+  #           cd publish/
+  #           npm publish
