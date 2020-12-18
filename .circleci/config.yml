@@ -46,12 +46,12 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install packages
-          command: yarn --cwd publish/ install
+          command: yarn --cwd component install
       - run:
           name: Run build
           command: |
             ls -al
-            cd publish/
+            cd component
             yarn build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
