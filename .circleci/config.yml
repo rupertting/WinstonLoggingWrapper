@@ -49,15 +49,14 @@ jobs:
           command: |
             mkdir -p publish/dist/src
             yarn --cwd publish install
+       - run:
+          name: List publish
+          command: |
+            ls publish
       - run:
           name: Run build
           command: |
-            ls -al
             yarn --cwd publish build
-            ls -al
-            ls publish
-            ls publish/dist
-            ls publish/dist/src
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
