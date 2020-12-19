@@ -3,13 +3,15 @@
   "version": "1.0.3",
   "description": "A logging wrapper for Winston logger",
   "main": "src/index.js",
+  "private": true,
   "dependencies": {
-    "jest": "^26.6.3",
     "traverse": "^0.6.6",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
   "scripts": {
     "test": "jest",
     "build": "cp package.json dist && cp -r src dist/src/"
