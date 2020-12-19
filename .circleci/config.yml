@@ -60,12 +60,8 @@ jobs:
       - run:
           name: Run build
           command: |
-            yarn --cwd publish build
-            ls -al
-            ls publish
-            ls publish/dist
-            ls publish/dist/src
-            jq .name package.json
+            yarn build
+            cat package.json
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

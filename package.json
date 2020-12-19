@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "cp package.json dist && cp -r src dist/src/"
+    "build": "bash packagedotjson.sh"
   },
   "repository": {
     "type": "git",
