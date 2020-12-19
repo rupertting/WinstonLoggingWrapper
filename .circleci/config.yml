@@ -13,14 +13,14 @@ workflows:
   build-test-and-publish:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - publish:
-          context:
-            - winston-logger-wrapper-variables
-          requires:
-            - test
+      # - test:
+      #     requires:
+      #       - build
+      # - publish:
+      #     context:
+      #       - winston-logger-wrapper-variables
+      #     requires:
+      #       - test
 jobs:
   build:
     <<: *defaults
@@ -54,9 +54,12 @@ jobs:
             mkdir -p publish/dist/src
             yarn --cwd publish install
       - run:
+          name: List publish
+          command: |
+            ls publish
+      - run:
           name: Run build
           command: |
-            ls -al
             yarn --cwd publish build
             ls -al
             ls publish
