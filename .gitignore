@@ -3,3 +3,4 @@ package-lock.json
 errorLogs
 *.log
 dist/
+package_2.json
