@@ -49,6 +49,7 @@ jobs:
           name: Install packages
           command: |
             yarn install --modules-folder dist/node_modules/
+            ls dist/
       - run:
           name: Run build
           command: |
