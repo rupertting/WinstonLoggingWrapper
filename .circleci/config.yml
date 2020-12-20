@@ -43,41 +43,24 @@ jobs:
       - run:
           name: Update yarn
           command: "curl -o- -L https://yarnpkg.com/install.sh | bash"
-      - run:
-          name: Install cwd
-          command: "yarn add cwd"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install packages
           command: |
-            mkdir -p publish/dist/src
-            yarn --cwd publish install
-      - run:
-          name: List publish
-          command: |
-            ls publish
+            yarn install --modules-folder dist/node_modules/
       - run:
           name: Run build
           command: |
             yarn build
-            cat package.json
+            cat dist/package.json
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ~/publish/node_modules
+            - ~node_modules
       - persist_to_workspace:
           root: ~/repo
           paths: .
-      - run:
-          name: List code in repo
-          command: |
-            ls -al
-      - run:
-          name: List code in publish
-          command: |
-            ls publish
-            ls publish/dist
   # test:
   #   <<: *defaults
   #   steps:

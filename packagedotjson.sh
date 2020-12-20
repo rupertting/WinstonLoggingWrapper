@@ -3,5 +3,6 @@
 #cp package.json dist/package.json
 
 #jq .name,.scripts package.json
-jq 'del(.scripts, .devDependencies)' package.json
+mkdir dist
+jq 'del(.scripts, .devDependencies)' package.json > dist/package.json
 
